@@ -11,5 +11,6 @@ namespace MusteriBakiyeUygulamasi.Business.Abstract
     {
         Customer Add(string name, string surname, string tckNo, string birthday);
         List<Customer> GetAll();
+        Customer Remove(string tckNo);
     }
 }

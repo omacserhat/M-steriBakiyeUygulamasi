@@ -26,5 +26,11 @@ namespace MüsteriBakiyeUygulamasi.Controllers
             var result = _customer.Add(name, surname, tckNo, birthday);
             return Ok(result);
         }
+        [HttpDelete]
+        public IActionResult Remove(string tckNo)
+        {
+            var result = _customer.Remove(tckNo);
+            return Ok(result);
+        }
     }
 }

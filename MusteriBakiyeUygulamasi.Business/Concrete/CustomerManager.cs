@@ -22,7 +22,7 @@ namespace MusteriBakiyeUygulamasi.Business.Concrete
             };
             var account = new CustomerAccount()
             {
-                AccountNumber = CreateAccountnumber(),
+                AccountNumber = CreateAccountNumber(),
                 Balance = 0,
                 TckNo = tckNo
             };
@@ -30,13 +30,11 @@ namespace MusteriBakiyeUygulamasi.Business.Concrete
             using (var _context = new MusteriBakiyeUygulamasiContext())
             {
                 _context.Customer.Add(customer);
-
                 _context.CustomerAccount.Add(account);
                 _context.SaveChanges();
             }
             return customer;
         }
-
         public List<Customer> GetAll()
         {
             using (var _context = new MusteriBakiyeUygulamasiContext())
@@ -45,9 +43,25 @@ namespace MusteriBakiyeUygulamasi.Business.Concrete
                 return customers;
             }
         }
-
-
-        private string CreateAccountnumber(int length = 8)
+        public Customer Remove(string tckNo)
+        {
+            using (var _context = new MusteriBakiyeUygulamasiContext())
+            {
+                var customerAccount = _context.CustomerAccount.SingleOrDefault(x => x.TckNo == tckNo);
+                _context.CustomerAccount.Remove(customerAccount);
+                _context.SaveChanges();
+            }
+            using (var _context = new MusteriBakiyeUygulamasiContext())
+            {
+                var customer = _context.Customer.SingleOrDefault(x=>x.TckNo == tckNo);
+                if (tckNo is null)
+                    throw new InvalidOperationException("Silinecek müşteri bulunamadı.");
+                _context.Customer.Remove(customer);
+                _context.SaveChanges();
+                return customer;
+            }
+        }
+        private string CreateAccountNumber(int length = 8)
         {
             const string valid = "1234567890";
             StringBuilder res = new StringBuilder();
