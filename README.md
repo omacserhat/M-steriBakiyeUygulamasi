@@ -15,3 +15,5 @@
 + CustomerAccount Get isteği tckNo'su girilen Customer'ın bakiyesini getirir.
 + CustomerAccount Post isteği tckNo'su girilen Customer'a bakiye ekler.
 + CustomerAccount Delete isteği tckNo'su girilen Customer'dan bakiye çıkartır.
+
+![alt text](https://i.hizliresim.com/ruyjmir.png)
